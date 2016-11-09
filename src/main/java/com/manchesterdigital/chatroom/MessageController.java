@@ -2,6 +2,7 @@ package com.manchesterdigital.chatroom;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -15,17 +16,17 @@ import java.util.Map;
 @RestController
 public class MessageController {
 
-
     @Inject
-    FirebaseService firebaseService;
+    private FirebaseService firebaseService;
+
+
 
     private static final Logger logger = LoggerFactory
             .getLogger(MessageController.class);
 
-    @RequestMapping("/")
-    public String index() throws FileNotFoundException {
 
-        firebaseService.fireBase();
+    @RequestMapping("/")
+    public String index()  {
 
         return "Greetings from Spring Boot!";
     }
@@ -35,6 +36,8 @@ public class MessageController {
     Map<String, String> getAllMessages() {
 
         Map<String, String> allMessages = new HashMap<>();
+        FirebaseService firebaseService = new FirebaseService();
+
         allMessages.putAll(firebaseService.getAllMessages());
 
         logger.debug("Returning {} messages", allMessages.size());

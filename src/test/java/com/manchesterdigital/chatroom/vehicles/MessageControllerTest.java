@@ -1,5 +1,6 @@
 package com.manchesterdigital.chatroom.vehicles;
 
+import com.manchesterdigital.chatroom.MessageController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.inject.Inject;
+import java.io.FileNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -48,5 +50,18 @@ public class MessageControllerTest {
         assertEquals(HttpStatus.OK, messages.getStatusCode());
         assertTrue(messages.getBody().contains(MESSAGE));
     }
+
+//    @Test
+//    public void given_iAddAMessage_then_messageSentToDb() throws FileNotFoundException{
+//
+//        MessageController messager = new MessageController();
+//
+//        messager.initApp();
+//
+//        ResponseEntity<?> response = messager.addMessage(MESSAGE);
+//
+//        assertEquals(HttpStatus.OK, response.getStatusCode());
+//
+//    }
 
 }
