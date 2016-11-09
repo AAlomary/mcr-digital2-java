@@ -22,7 +22,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
     function sendMessage() {
-        var message = '{"name":"zoes","message":"' + $('.typingMessage').val() + '"}';
+        var message = '{"name":"zoes","text":"' + $('.typingMessage').val() + '"}';
 
         $.post("http://localhost:8080/messages", message);
     }

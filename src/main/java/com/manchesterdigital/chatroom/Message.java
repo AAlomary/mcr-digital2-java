@@ -14,6 +14,11 @@ public class Message
         this.setText(text);
     }
 
+    public Message()
+    {
+
+    }
+
     public String getName()
     {
         return name;

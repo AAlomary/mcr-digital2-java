@@ -1,6 +1,7 @@
 package com.manchesterdigital.chatroom;
 
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
@@ -38,16 +39,21 @@ public class MessageController {
 
     @RequestMapping(method=RequestMethod.GET, produces = "Application/json", value="messages")
     public @ResponseBody
-    List<Object> getAllMessages() {
+    String getAllMessages() throws JsonProcessingException
+    {
 
         Map<String, Message> allMessages = new HashMap<>();
         allMessages.putAll(firebaseService.getAllMessages());
 
-        List<Object> messageList = new ArrayList<Object>(allMessages.values());
+        List<Message> messageList = new ArrayList<>(allMessages.values());
 
         logger.debug("Returning {} messages", allMessages.size());
 
-        return messageList;
+        ObjectMapper objectMapper = new ObjectMapper();
+
+        String jsonList = objectMapper.writeValueAsString(messageList);
+
+        return jsonList;
     }
 
     @RequestMapping(method= RequestMethod.POST, produces = "Application/json", value="messages")
@@ -60,7 +66,9 @@ public class MessageController {
             String decodedMessage = java.net.URLDecoder.decode(message, "UTF-8");
             ObjectMapper mapper = new ObjectMapper();
 
-             message1 = mapper.readValue(decodedMessage, Message.class);
+            String fixMessage = decodedMessage.substring(0, decodedMessage.length()-1);
+
+             message1 = mapper.readValue(fixMessage, Message.class);
 
         } catch (UnsupportedEncodingException e)
         {

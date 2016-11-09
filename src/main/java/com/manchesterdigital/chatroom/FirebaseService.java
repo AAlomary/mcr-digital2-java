@@ -33,7 +33,8 @@ public class FirebaseService {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot locationSnapshot : dataSnapshot.getChildren()) {
-                        Message newMessage = (Message)locationSnapshot.getValue();
+                        HashMap<String, String> obj = (HashMap)locationSnapshot.getValue();
+                        Message newMessage = new Message(obj.get("name"), obj.get("text"));
                         String newId = locationSnapshot.getKey().toString();
                         messages.put(newId , newMessage);
                     }
