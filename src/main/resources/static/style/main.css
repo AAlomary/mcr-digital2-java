@@ -84,7 +84,7 @@ a:hover {
     border-color: #FF8C3A;
 }
 
-#typingMessage{
+.typingMessage{
     resize: none;
     height:6em;
 }
