@@ -31,6 +31,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile ("com.google.firebase:firebase-server-sdk:3.0.1")
     compile ("javax.inject:javax.inject:1")
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile("junit:junit")

@@ -19,9 +19,14 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <![endif]-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+    function sendMessage() {
+        var message = '{"name":"zoes","message":"' + $('.typingMessage').val() + '"}';
 
-    </script>
+        $.post("http://localhost:8080/messages", message);
+    }
+</script>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -74,18 +79,14 @@
     <div class="message_write">
         <textarea type="text" class="form-control typingMessage" placeholder="Type a message"></textarea>
         <!--<a href="#" class="upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i>Add Files</a>-->
-        <button id="btn-success" onclick="$.post('http://localhost:8080/messages', $('.typingMessage').val())" class="btn btn-success">Send</button></div>
+        <button id="btn-success" onclick="sendMessage()" class="btn btn-success">Send</button></div>
 
 </div>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
-    $('#btn-success').on('click', function (e) {
 
-        $.post("http://localhost:8080/messages", $('.typingMessage'));
-    })
-</script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="../../../../style/js/bootstrap.min.js"></script>
 </body>

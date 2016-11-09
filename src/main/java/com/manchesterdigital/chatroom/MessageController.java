@@ -1,5 +1,8 @@
 package com.manchesterdigital.chatroom;
 
+import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +12,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.inject.Inject;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -35,7 +40,7 @@ public class MessageController {
     public @ResponseBody
     List<Object> getAllMessages() {
 
-        Map<String, String> allMessages = new HashMap<>();
+        Map<String, Message> allMessages = new HashMap<>();
         allMessages.putAll(firebaseService.getAllMessages());
 
         List<Object> messageList = new ArrayList<Object>(allMessages.values());
@@ -48,7 +53,31 @@ public class MessageController {
     @RequestMapping(method= RequestMethod.POST, produces = "Application/json", value="messages")
     public ResponseEntity<?> addMessage(@RequestBody String message) {
 
-        String messageId = firebaseService.addMessage(message);
+        Message message1 = null;
+
+        try
+        {
+            String decodedMessage = java.net.URLDecoder.decode(message, "UTF-8");
+            ObjectMapper mapper = new ObjectMapper();
+
+             message1 = mapper.readValue(decodedMessage, Message.class);
+
+        } catch (UnsupportedEncodingException e)
+        {
+            e.printStackTrace();
+        } catch (JsonParseException e)
+        {
+            e.printStackTrace();
+        } catch (JsonMappingException e)
+        {
+            e.printStackTrace();
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+
+        String messageId = firebaseService.addMessage(message1);
 
         // Response
         Map<String,Object> model = new HashMap<>();

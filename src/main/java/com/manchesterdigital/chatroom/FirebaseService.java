@@ -7,6 +7,7 @@ import com.google.firebase.database.*;
 import javax.inject.Named;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -17,7 +18,7 @@ public class FirebaseService {
 
     // TEMP this needs to be the actual message service
     static FirebaseDatabase database;
-    Map<String, String> messages = new HashMap<>();
+    Map<String, Message> messages = new HashMap<>();
     DatabaseReference ref;
 
     public FirebaseService() {
@@ -32,7 +33,7 @@ public class FirebaseService {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot locationSnapshot : dataSnapshot.getChildren()) {
-                        String newMessage = locationSnapshot.getValue().toString();
+                        Message newMessage = (Message)locationSnapshot.getValue();
                         String newId = locationSnapshot.getKey().toString();
                         messages.put(newId , newMessage);
                     }
@@ -59,19 +60,18 @@ public class FirebaseService {
         fba.getOptions();
     }
 
-    public Map<String, String> getAllMessages() {
+    public Map<String, Message> getAllMessages() {
         return messages;
     }
 
-    public String addMessage(String message) {
+    public String addMessage(Message message) {
         String messageId = UUID.randomUUID().toString();
-
         messages.put(messageId, message);
         ref.setValue(messages);
         return messageId;
     }
 
-    public String getMessage(String id) {
+    public Message getMessage(String id) {
         return messages.get(id);
     }
 
