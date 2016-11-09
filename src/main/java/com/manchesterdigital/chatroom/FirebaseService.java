@@ -32,7 +32,9 @@ public class FirebaseService {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot locationSnapshot : dataSnapshot.getChildren()) {
-                        String location = locationSnapshot.getValue().toString();
+                        String newMessage = locationSnapshot.getValue().toString();
+                        String newId = locationSnapshot.getKey().toString();
+                        messages.put(newId , newMessage);
                     }
                 }
 

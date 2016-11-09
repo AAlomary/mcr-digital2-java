@@ -27,7 +27,7 @@ public class MessageControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public  void given_iHitRootUri_then_iGetASuccessfulFirebaseConnection()  {
+    public  void given_iHitRootUri_then_iGetASuccessfulConnection()  {
 
         ResponseEntity<String> res = restTemplate.getForEntity(ROOT_URL, String.class);
         assertEquals(res.getStatusCode(), HttpStatus.OK);
@@ -47,13 +47,8 @@ public class MessageControllerTest {
         ResponseEntity<String> messages = restTemplate.getForEntity(MESSAGES_URL, String.class);
         assertEquals(HttpStatus.OK, messages.getStatusCode());
         assertTrue(messages.getBody().contains(MESSAGE));
-    }
-
-    @Test
-    public void given_iAddMessage_then_messageAddedToDb () {
-
-
 
     }
+
 
 }
