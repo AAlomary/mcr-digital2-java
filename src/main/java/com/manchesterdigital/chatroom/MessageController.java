@@ -28,12 +28,6 @@ public class MessageController {
     private static final Logger logger = LoggerFactory
             .getLogger(MessageController.class);
 
-    @RequestMapping("/")
-    public String index() throws FileNotFoundException {
-        
-
-        return "Greetings from Spring Boot!";
-    }
 
     @RequestMapping(method=RequestMethod.GET, produces = "Application/json", value="messages")
     public @ResponseBody
