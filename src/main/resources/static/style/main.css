@@ -77,6 +77,7 @@ a:hover {
     border-color: #ED9B40;
     margin-bottom: 5.5em;
     padding:2.2em;
+    margin-left: 0.5em;
 }
 
 .btn-success:hover {
@@ -92,4 +93,14 @@ a:hover {
 .contactsText, .contactsText:hover {
     margin-bottom: 2em;
     color:white;
+}
+
+#messageDisplay {
+    width: 65em;
+    height: 40em;
+    position: absolute;
+    display: inline-block;
+    margin-top: 1.5em;
+    margin-left: 2.5em;
+    overflow-y:scroll;
 }

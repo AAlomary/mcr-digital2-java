@@ -66,15 +66,13 @@
                 })
 
             });
-
-
         </script>
     </div>
 
     <div class="message_write">
         <textarea type="text" class="form-control typingMessage" placeholder="Type a message"></textarea>
         <!--<a href="#" class="upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i>Add Files</a>-->
-        <button id="btn-success" onclick="$.post('http://localhost:8080/messages', $('.typingMessage').val())" class="btn btn-success">Send</button></div>
+        <button type="submit" id="btn-success" onclick="$.post('http://localhost:8080/messages', $('.typingMessage').val())" class="btn btn-success">Send</button></div>
 
 </div>
 </div>
