@@ -30,8 +30,7 @@ public class MessageController {
 
     @RequestMapping("/")
     public String index() throws FileNotFoundException {
-
-        firebaseService.fireBase();
+        
 
         return "Greetings from Spring Boot!";
     }
