@@ -1,0 +1,95 @@
+.logo{
+    width: 15em;
+    margin-left:40em;
+}
+
+body, .navbar {
+    background-color:#19180A;
+}
+
+.navbar-default{
+    border-color:#19180A;
+}
+
+.navbar{
+    margin-bottom: 0;
+}
+
+.chat{
+    background-color: #F1E9E9;
+    width: 90em;
+    height:50em;
+    margin:auto auto;
+    margin-bottom: 5em;
+    border-radius:10px;
+}
+
+.contactsBar {
+    background-color: #009DDC;
+    width: 20em;
+    height:50em;
+    display: inline-block;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.placeholder{
+    margin-bottom: 1em;
+    height: 2em;
+    width: 2em;
+    display: block;
+    margin-top:1em;
+    background-size:20px;
+}
+
+.contacts{
+    padding-top: 1em;
+    padding-left: 2em;
+}
+
+a{
+    color: white;
+    font-size: 25px;
+    font-family: 'Comfortaa', cursive;
+    margin-left: 0.5em;
+}
+
+a:hover {
+    color: #575A4B;
+    text-decoration: none;
+}
+
+.message_write{
+    padding-left: 1em;
+    display: inline-block;
+    position: absolute;
+    padding-top:43em;
+}
+
+.form-control{
+    width:60em;
+    display: inline-block;
+    height:7em;
+}
+
+.btn-success {
+    background-color: #ED9B40;
+    border-color: #ED9B40;
+    margin-bottom: 5.5em;
+    padding:2.2em;
+}
+
+.btn-success:hover {
+    background-color: #FF8C3A;
+    border-color: #FF8C3A;
+}
+
+#typingMessage{
+    resize: none;
+    height:6em;
+}
+
+.contactsText, .contactsText:hover {
+    margin-bottom: 2em;
+    color:white;
+}
