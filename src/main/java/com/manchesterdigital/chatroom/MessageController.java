@@ -16,17 +16,22 @@ import java.util.Map;
 @RestController
 public class MessageController {
 
-    @Inject
-    private FirebaseService firebaseService;
 
+    FirebaseService firebaseService;
 
+    public MessageController(@Autowired FirebaseService firebaseService) {
+
+        this.firebaseService = firebaseService;
+
+    }
 
     private static final Logger logger = LoggerFactory
             .getLogger(MessageController.class);
 
-
     @RequestMapping("/")
-    public String index()  {
+    public String index() throws FileNotFoundException {
+
+        firebaseService.fireBase();
 
         return "Greetings from Spring Boot!";
     }
@@ -36,8 +41,6 @@ public class MessageController {
     Map<String, String> getAllMessages() {
 
         Map<String, String> allMessages = new HashMap<>();
-        FirebaseService firebaseService = new FirebaseService();
-
         allMessages.putAll(firebaseService.getAllMessages());
 
         logger.debug("Returning {} messages", allMessages.size());

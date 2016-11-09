@@ -31,7 +31,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile ("com.google.firebase:firebase-server-sdk:3.0.1")
     compile ("javax.inject:javax.inject:1")
-    compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.24'
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile("junit:junit")
 

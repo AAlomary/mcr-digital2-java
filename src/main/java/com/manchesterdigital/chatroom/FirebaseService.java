@@ -63,6 +63,7 @@ public class FirebaseService {
 
     public String addMessage(String message) {
         String messageId = UUID.randomUUID().toString();
+
         messages.put(messageId, message);
         ref.setValue(messages);
         return messageId;
