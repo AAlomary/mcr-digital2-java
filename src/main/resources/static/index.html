@@ -34,7 +34,7 @@
 
         var message = {"name": myName, "text": $('.typingMessage').val(), "time": (new Date()).getTime()};
 
-        $.post("http://localhost:8080/messages", JSON.stringify(message));
+        $.post("http://192.168.24.207:8080/messages", JSON.stringify(message));
 
         document.getElementById("output").value = "";
     }
@@ -51,7 +51,7 @@
 
         function getMessages(){
 
-            $.getJSON('http://localhost:8080/messages', function(data){
+            $.getJSON('http://192.168.24.207:8080/messages', function(data){
                 var messages= [];
                 $.each(data, function(key, value){
                     messages.push(value);
