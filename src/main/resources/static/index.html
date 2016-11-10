@@ -61,7 +61,7 @@
                 });
 
                 var sortedMessages = messages.sort(function(a, b){
-                   return a.time - b.time;
+                   return b.time - a.time;
                 });
 
                 var $messageContent = $('<div></div>');
