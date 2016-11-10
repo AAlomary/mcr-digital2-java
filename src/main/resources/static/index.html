@@ -35,14 +35,14 @@
         var message = {"name": myName, "text": $('.typingMessage').val(), "time": (new Date()).getTime()};
 
         $.post("http://localhost:8080/messages", JSON.stringify(message));
+
+        document.getElementById("output").value = "";
     }
 
     function timeout() {
         setTimeout(function () {
-            // Do Something Here
             document.getElementById("messageDisplay").innerHTML="";
             getMessages();
-            // create a recursive loop.
             timeout();
         }, 1000);
     }
@@ -105,11 +105,9 @@
     </div>
 
     <div class="message_write">
-        <textarea type="text" class="form-control typingMessage" placeholder="Type a message"></textarea>
-        <!--<a href="#" class="upload_btn"><i class="fa fa-cloud-upload" aria-hidden="true"></i>Add Files</a>-->
+        <textarea type="text" id="output" class="form-control typingMessage" placeholder="Type a message"></textarea>
         <button id="btn-success" onclick="sendMessage()" class="btn btn-success">Send</button></div>
-
-</div>
+    </div>
 </div>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
