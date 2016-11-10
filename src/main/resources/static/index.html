@@ -21,20 +21,23 @@
     <![endif]-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
+
+        var myName = prompt("Enter your name");
+
     function sendMessage() {
 
-        var message = {"name": "zoes", "text": $('.typingMessage').val()};
+        var message = {"name": myName, "text": $('.typingMessage').val()};
 
         $.post("http://localhost:8080/messages", JSON.stringify(message));
     }
 
-//    var refresh;
-//
-//    window.onload = function() {
-//        function screenRefresh() {
-//            refresh = setTimeout(sendMessage, 1000);
-//        }
-//    }
+    var refresh;
+
+    window.onload = function() {
+        function screenRefresh() {
+            refresh = setTimeout(sendMessage, 1000);
+        }
+    }
 
     function timeout() {
         setTimeout(function () {
@@ -47,7 +50,7 @@
 </script>
     <script>
 
-        getMessages(){
+        function getMessages(){
 
             $.getJSON('http://localhost:8080/messages', function(data){
                 var messages= [];
@@ -56,7 +59,7 @@
                 });
 
                 messages.forEach(function(data){
-                    $("#messageDisplay").append('<br><p>' + data + '</p>');
+                    $("#messageDisplay").append('<br><p>' + data.name + ': ' + data.text + '</p>');
                     console.log(data);
 
                 })
@@ -67,7 +70,7 @@
 
     </script>
 </head>
-<body onload="setTimeout()">
+<body onload="timeout()">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
