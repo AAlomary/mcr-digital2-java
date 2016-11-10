@@ -54,26 +54,13 @@
 
             $.getJSON('http://localhost:8080/messages', function(data){
 
-                var recMessages = [];
-                var newMessages = [];
+                var messages = [];
 
                 $.each(data, function(key, value){
                     recMessages.push(value);
                 });
 
-
-                recMessages.forEach(function(message){
-
-                    if(globalMessages.indexOf(message) == -1){
-
-                        newMessages.push(message);
-
-                    }
-
-                });
-
-
-                var sortedMessages = newMessages.sort(function(a, b){
+                var sortedMessages = messages.sort(function(a, b){
                    return a.time - b.time;
                 });
 
