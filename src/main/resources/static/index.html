@@ -31,18 +31,19 @@
         $.post("http://localhost:8080/messages", JSON.stringify(message));
     }
 
-    var refresh;
-
-    window.onload = function() {
-        function screenRefresh() {
-            refresh = setTimeout(sendMessage, 1000);
-        }
-    }
+//    var refresh;
+//
+//    window.onload = function() {
+//        function screenRefresh() {
+//            refresh = setTimeout(sendMessage, 1000);
+//        }
+//    }
 
     function timeout() {
         setTimeout(function () {
             // Do Something Here
-            messageDisplay;
+            document.getElementById("messageDisplay").innerHTML="";
+            getMessages();
             // create a recursive loop.
             timeout();
         }, 1000);
@@ -70,7 +71,7 @@
 
     </script>
 </head>
-<body onload="timeout()">
+<body onload="timeout();">
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
