@@ -1,5 +1,7 @@
 package com.manchesterdigital.chatroom;
 
+import java.util.Date;
+
 /**
  * Created by ahmad.alomary on 09/11/2016.
  */
@@ -12,7 +14,7 @@ public class Message
     {
         this.setName(name);
         this.setText(text);
-        this.setTime(time);
+        this.setTime("" + (new Date().getTime()));
 
     }
 
