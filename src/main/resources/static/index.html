@@ -71,6 +71,12 @@
 
         }
 
+        $(document).bind('keypress', function(e){
+            if(e.which === 13) { // return
+                $('#btn-success').trigger('click');
+            }
+        });
+
     </script>
 </head>
 <body onload="timeout();">
