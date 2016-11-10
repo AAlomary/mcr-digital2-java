@@ -24,6 +24,7 @@
 
 
         var myName = prompt("Enter your name");
+        var globalMessages = [];
 
         if (myName == null) {
 
@@ -34,36 +35,43 @@
 
             var message = {"name": myName, "text": $('.typingMessage').val(), "time": (new Date()).getTime()};
 
-            $.post("http://localhost:8080/messages", JSON.stringify(message));
+        $.post("http://localhost:8080/messages", JSON.stringify(message));
 
             document.getElementById("output").value = "";
         }
 
-        function timeout() {
-            setTimeout(function () {
-                document.getElementById("messageDisplay").innerHTML = "";
-                getMessages();
-                timeout();
-            }, 1000);
-        }
-    </script>
+    function timeout() {
+        setTimeout(function () {
+            //document.getElementById("messageDisplay").innerHTML="";
+            getMessages();
+            timeout();
+        }, 1000);
+    }
+</script>
     <script>
 
         function getMessages() {
 
-            $.getJSON('http://localhost:8080/messages', function (data) {
+            $.getJSON('http://localhost:8080/messages', function(data){
+
                 var messages = [];
-                $.each(data, function (key, value) {
+
+                $.each(data, function(key, value){
                     messages.push(value);
                 });
 
-                var sortedMessages = messages.sort(function (a, b) {
-                    return a.time - b.time;
+                var sortedMessages = messages.sort(function(a, b){
+                   return b.time - a.time;
                 });
 
-                sortedMessages.forEach(function (data) {
-                    $("#messageDisplay").append('<br><p>' + data.name + ': ' + data.text + '</p>');
-                    console.log(data);
+                var $messageContent = $('<div></div>');
+
+                sortedMessages.forEach(function(data){
+
+                    $messageContent.append('<br><p>' + data.name + ': ' + data.text + '</p>');
+                    globalMessages.push(data);
+                    $('#messageDisplay').html($messageContent.html());
+
                 })
             });
         }
