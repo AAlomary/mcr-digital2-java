@@ -22,22 +22,20 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script>
 
+
         var myName = prompt("Enter your name");
+
+        if(myName == null){
+
+            myName = "Mr No Name";
+        }
 
     function sendMessage() {
 
-        var message = {"name": myName, "text": $('.typingMessage').val()};
+        var message = {"name": myName, "text": $('.typingMessage').val(), "time": (new Date()).getTime()};
 
         $.post("http://localhost:8080/messages", JSON.stringify(message));
     }
-
-//    var refresh;
-//
-//    window.onload = function() {
-//        function screenRefresh() {
-//            refresh = setTimeout(sendMessage, 1000);
-//        }
-//    }
 
     function timeout() {
         setTimeout(function () {
@@ -59,7 +57,11 @@
                     messages.push(value);
                 });
 
-                messages.forEach(function(data){
+                var sortedMessages = messages.sort(function(a, b){
+                   return a.time - b.time;
+                });
+
+                sortedMessages.forEach(function(data){
                     $("#messageDisplay").append('<br><p>' + data.name + ': ' + data.text + '</p>');
                     console.log(data);
 
