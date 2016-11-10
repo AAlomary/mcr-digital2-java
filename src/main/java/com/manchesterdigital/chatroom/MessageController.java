@@ -66,7 +66,7 @@ public class MessageController {
             String decodedMessage = java.net.URLDecoder.decode(message, "UTF-8");
             ObjectMapper mapper = new ObjectMapper();
 
-            String fixMessage = decodedMessage.substring(0, decodedMessage.length()-1);
+            String fixMessage = decodedMessage.trim().substring(0, decodedMessage.length()-1);
 
              message1 = mapper.readValue(fixMessage, Message.class);
 
