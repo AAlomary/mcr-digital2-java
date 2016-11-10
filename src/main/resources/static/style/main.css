@@ -78,11 +78,13 @@ a:hover {
     margin-bottom: 5.5em;
     padding:2.2em;
     margin-left: 0.5em;
+    color: white;
 }
 
-.btn-success:hover {
+.btn-success:hover,.btn-success:active, .btn-success:focus, .btn-success:visited, .btn-success:link{
     background-color: #FF8C3A;
     border-color: #FF8C3A;
+    color:white;
 }
 
 .typingMessage{
