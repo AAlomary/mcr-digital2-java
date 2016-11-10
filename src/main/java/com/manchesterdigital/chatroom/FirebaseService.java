@@ -38,6 +38,8 @@ public class FirebaseService {
                         String newId = locationSnapshot.getKey().toString();
                         messages.put(newId , newMessage);
                     }
+
+                    ref.setValue(messages);
                 }
 
                 @Override
@@ -45,7 +47,6 @@ public class FirebaseService {
 
                 }
             });
-            ref.setValue(messages);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
