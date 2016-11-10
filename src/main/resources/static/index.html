@@ -28,6 +28,27 @@
         $.post("http://localhost:8080/messages", JSON.stringify(message));
     }
 </script>
+    <script>
+
+        getMessages(){
+
+            $.getJSON('http://localhost:8080/messages', function(data){
+                var messages= [];
+                $.each(data, function(key, value){
+                    messages.push(value);
+                });
+
+                messages.forEach(function(data){
+                    $("#messageDisplay").append('<br><p>' + data + '</p>');
+                    console.log(data);
+
+                })
+
+            });
+
+        }
+
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -58,23 +79,6 @@
     </div>
 
     <div id="messageDisplay">
-        <script>
-            $.getJSON('http://localhost:8080/messages', function(data){
-                var messages= [];
-                $.each(data, function(key, value){
-                    messages.push(value);
-                });
-
-                messages.forEach(function(data){
-                    $("#messageDisplay").append('<br><p>' + data + '</p>');
-                    console.log(data);
-
-                })
-
-            });
-
-
-        </script>
     </div>
 
     <div class="message_write">
