@@ -25,59 +25,65 @@
 
         var myName = prompt("Enter your name");
 
-        if(myName == null){
+        if (myName == null) {
 
             myName = "Mr No Name";
         }
 
-    function sendMessage() {
+        function sendMessage() {
 
-        var message = {"name": myName, "text": $('.typingMessage').val(), "time": (new Date()).getTime()};
+            var message = {"name": myName, "text": $('.typingMessage').val(), "time": (new Date()).getTime()};
 
-        $.post("http://192.168.24.207:8080/messages", JSON.stringify(message));
+            $.post("http://localhost:8080/messages", JSON.stringify(message));
 
-        document.getElementById("output").value = "";
-    }
+            document.getElementById("output").value = "";
+        }
 
-    function timeout() {
-        setTimeout(function () {
-            document.getElementById("messageDisplay").innerHTML="";
-            getMessages();
-            timeout();
-        }, 1000);
-    }
-</script>
+        function timeout() {
+            setTimeout(function () {
+                document.getElementById("messageDisplay").innerHTML = "";
+                getMessages();
+                timeout();
+            }, 1000);
+        }
+    </script>
     <script>
 
-        function getMessages(){
+        function getMessages() {
 
-            $.getJSON('http://192.168.24.207:8080/messages', function(data){
-                var messages= [];
-                $.each(data, function(key, value){
+            $.getJSON('http://localhost:8080/messages', function (data) {
+                var messages = [];
+                $.each(data, function (key, value) {
                     messages.push(value);
                 });
 
-                var sortedMessages = messages.sort(function(a, b){
-                   return a.time - b.time;
+                var sortedMessages = messages.sort(function (a, b) {
+                    return a.time - b.time;
                 });
 
-                sortedMessages.forEach(function(data){
+                sortedMessages.forEach(function (data) {
                     $("#messageDisplay").append('<br><p>' + data.name + ': ' + data.text + '</p>');
                     console.log(data);
-
                 })
-
             });
-
         }
 
-        $(document).bind('keypress', function(e){
-            if(e.which === 13) { // return
+        $(document).bind('keypress', function (e) {
+            if (e.which === 13) { // return
                 $('#btn-success').trigger('click');
             }
         });
-
     </script>
+
+    <style>
+        .col-md-1{
+            padding-right:30px;
+        }
+
+        .col-md-11 {
+            padding-left:0px;
+        }
+    </style>
 </head>
 <body onload="timeout();">
 <nav class="navbar navbar-default">
@@ -98,7 +104,7 @@
 </nav>
 
 <div class="chat">
-    <div class="contactsBar">
+    <div class="contactsBar col-md-3">
         <div class="contacts">
             <span><a class="contactsText" href="#">Contacts</a></span>
             <span class="glyphicon glyphicon-user placeholder"><a href="#">Joel</a></span>
@@ -106,13 +112,18 @@
             <span class="glyphicon glyphicon-user placeholder"><a href="#">Ahmad</a></span>
         </div>
     </div>
+    <div class="messageContainer col-md-9">
+        <div id="messageDisplay"></div>
 
-    <div id="messageDisplay">
-    </div>
-
-    <div class="message_write">
-        <textarea type="text" id="output" class="form-control typingMessage" placeholder="Type a message"></textarea>
-        <button id="btn-success" onclick="sendMessage()" class="btn btn-success">Send</button></div>
+        <div class="message_write">
+            <div class="col-md-11">
+            <textarea type="text" id="output" class="form-control typingMessage"
+                      placeholder="Type a message"></textarea>
+            </div>
+            <div class="col-md-1">
+                <button id="btn-success" onclick="sendMessage()" class="btn btn-success">Send</button>
+            </div>
+        </div>
     </div>
 </div>
 

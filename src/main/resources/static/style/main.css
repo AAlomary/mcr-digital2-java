@@ -62,12 +62,12 @@ a:hover {
 .message_write{
     padding-left: 1em;
     display: inline-block;
-    position: absolute;
-    padding-top:43em;
+    padding-top:10px;
+    height:200px;
 }
 
 .form-control{
-    width:60em;
+    width:800px;
     display: inline-block;
     height:7em;
 }
@@ -75,10 +75,11 @@ a:hover {
 .btn-success {
     background-color: #ED9B40;
     border-color: #ED9B40;
-    margin-bottom: 5.5em;
     padding:2.2em;
     margin-left: 0.5em;
     color: white;
+    margin-top: 55px;
+    margin-left: -25px;
 }
 
 .btn-success:hover,.btn-success:active, .btn-success:focus, .btn-success:visited, .btn-success:link{
@@ -89,7 +90,9 @@ a:hover {
 
 .typingMessage{
     resize: none;
-    height:6em;
+    height:7em;
+    display:inline-block;
+    margin-top: 50px;
 }
 
 .contactsText, .contactsText:hover {
@@ -99,8 +102,7 @@ a:hover {
 
 #messageDisplay {
     width: 65em;
-    height: 40em;
-    position: absolute;
+    height: 500px;
     display: inline-block;
     margin-top: 1.5em;
     margin-left: 2.5em;
